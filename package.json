@@ -1,0 +1,16 @@
+{
+  "name": "webthing-tplink",
+  "version": "1.0.0",
+  "description": "WebThing API for TP link devices",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "techbeast.org",
+  "license": "ISC",
+  "dependencies": {
+    "tplink-lightbulb": "^1.5.2",
+    "uuid": "^8.1.0",
+    "webthing": "^0.12.2"
+  }
+}

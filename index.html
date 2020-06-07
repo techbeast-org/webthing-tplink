@@ -1,0 +1,93 @@
+<html>
+    <head>
+      
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+    </head>
+    <style>
+        .slidecontainer {
+          width: 100%;
+        }
+        
+    </style>
+<body class="ui-widget-content" style="border:0;">
+<meta name="viewport" content="width=500, initial-scale=1"> <!--This line of code is for mobile responsive -->
+<h1 align="center">WebThing Smart Bulb</h1>
+<h2 align="center"> Toggle and control the brightness</h1>
+<div class="BorderMargin" align="center">
+  <image src = 'bulb.jpg' alt="LED" style="width:180px;height:180px;"></image><br>
+
+
+   <button class="button" id="on_button">Turn On </button>
+   <button class="button" id="off_button">Turn Off</button>
+   
+   <div class="slidecontainer">
+    <p>Brightness</p>
+    <input type="range" min="1" max="100" value="50" id="brightness">
+    <p>Value: <span id="brightness-value"></span></p>
+  </div>
+
+  
+
+<p align="center">Check out<a href="https://techbeast.org"> Techbeast.org</a> for more fun Learning !!</p>
+
+
+
+</div>
+
+</body>
+<script>
+$(function() {
+ 
+//Turn ON
+$("#on_button").on("click", function() {
+
+      $.ajax({
+        url: "http://localhost:8888/properties/on",
+        type: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        data: JSON.stringify({ on: true })
+      }); //ajax
+ // the target is a ON  button
+  });
+
+// Turn OFF  
+$("#off_button").on("click", function() {
+
+$.ajax({
+  url: "http://localhost:8888/properties/on",
+  type: "PUT",
+  headers: {
+    "Content-Type": "application/json",
+    "Accept":"application/json",
+  },
+  data: JSON.stringify({ on: false })
+}); //ajax
+// the target is a OFF  button
+});
+
+//Brightness
+var slider = document.getElementById("brightness");
+var output = document.getElementById("brightness-value");
+output.innerHTML = slider.value;
+
+$("#brightness").on("input", function() {
+
+  output.innerHTML = slider.value;
+  $.ajax({
+  url: "http://127.0.0.1:8888/properties/brightness",
+  type: "PUT",
+  headers: {
+    "Content-Type": "application/json",
+    "Accept":"application/json",
+  },
+  dataType: "json",
+  data: JSON.stringify({ brightness: JSON.parse(slider.value) })
+}); //ajax
+})
+    });
+
+</script>
+</html>
