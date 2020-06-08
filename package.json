@@ -1,5 +1,5 @@
 {
-  "name": "webthing-tplink-bulb",
+  "name": "webthing-tplink",
   "version": "1.0.0",
   "description": "WebThing API for TP link devices",
   "main": "index.js",
